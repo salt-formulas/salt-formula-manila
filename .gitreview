@@ -1,4 +1,4 @@
 [gerrit]
-host=172.16.48.254
+host=gerrit.mcp.mirantis.net
 port=29418
 project=salt-formulas/manila.git

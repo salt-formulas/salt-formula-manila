@@ -1,0 +1,5 @@
+salt-formula-manila (2017.6) xenial; urgency=medium
+
+  * Initial release
+
+ -- Vasyl Saienko vsaienko@mirantis.com  Tue, 29 Jun 2017 13:01:02 EET

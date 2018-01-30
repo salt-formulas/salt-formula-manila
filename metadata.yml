@@ -1,0 +1,6 @@
+name: "manila"
+version: "2017.6"
+source: "https://github.com/salt-formulas/salt-formula-manila"
+dependencies:
+  - name: apache
+    source: "https://github.com/salt-formulas/salt-formula-apache"

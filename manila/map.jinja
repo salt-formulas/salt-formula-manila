@@ -1,0 +1,82 @@
+{%- set cacert_file = salt['grains.filter_by']({
+        'Debian': '/etc/ssl/certs/ca-certificates.crt',
+        'RedHat': '/etc/pki/tls/certs/ca-bundle.crt'
+    })
+%}
+
+{% set cfg = pillar.manila.get('common', {}) %}
+
+{% set api = salt['grains.filter_by']({
+    'Debian': {
+        'pkgs': ['manila-api'],
+        'engine': {
+          'name': 'eventlet'
+        },
+        'service': 'apache2',
+        'cacert_file': cacert_file,
+    }
+}, merge=pillar.manila.get('api', {})) %}
+
+{%- if api.get('enabled', False) %}
+
+{% set cfg = salt['grains.filter_by']({
+    'default': cfg,
+}, default='default', merge=api) %}
+
+{%- endif %}
+
+{% set scheduler = salt['grains.filter_by']({
+    'Debian': {
+      'pkgs': ['manila-scheduler'],
+      'service': 'manila-scheduler',
+      'cacert_file': cacert_file,
+    }
+
+}, merge=pillar.manila.get('scheduler', {})) %}
+
+{%- if scheduler.get('enabled', False) %}
+
+{% set cfg = salt['grains.filter_by']({
+    'default': cfg,
+}, default='default', merge=scheduler) %}
+
+{%- endif %}
+
+{% set data = salt['grains.filter_by']({
+    'Debian': {
+        'pkgs': ['manila-data'],
+        'service': 'manila-data',
+        'cacert_file': cacert_file,
+    },
+}, merge=pillar.manila.get('data', {})) %}
+
+{%- if data.get('enabled', False) %}
+
+{% set cfg = salt['grains.filter_by']({
+    'default': cfg,
+}, default='default', merge=data) %}
+
+{%- endif %}
+
+{% set share = salt['grains.filter_by']({
+    'Debian': {
+        'pkgs': ['manila-share'],
+        'service': 'manila-share',
+        'cacert_file': cacert_file,
+    },
+}, merge=pillar.manila.get('share', {})) %}
+
+{%- if share.get('enabled', False) %}
+
+{% set cfg = salt['grains.filter_by']({
+    'default': cfg,
+}, default='default', merge=share) %}
+
+{%- endif %}
+
+{% set client = salt['grains.filter_by']({
+    'Debian': {
+      'pkgs': ['python-manilaclient'],
+      'cacert_file': cacert_file,
+    },
+}, merge=pillar.manila.get('client', {})) %}
