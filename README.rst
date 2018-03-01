@@ -43,6 +43,27 @@ Single manila service
           host: 10.20.0.102
 
 
+Backend configuration
+=====================
+
+
+Nexenta backend
+
+.. code-block:: yaml
+
+    manila:
+      share:
+        enabled_share_backends:
+          nexenta:
+            name: nexenta
+            type: nexenta
+            enabled: true
+            dhss: false
+            nexenta_host: 1.2.3.4
+            nexenta_password: secretpassword
+            nexenta_user: nonexistent
+            nexenta_volume: volume1
+
 More information
 ================
 
