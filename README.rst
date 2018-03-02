@@ -47,7 +47,7 @@ Backend configuration
 =====================
 
 
-Nexenta backend
+Nexenta driver
 
 .. code-block:: yaml
 
@@ -63,6 +63,35 @@ Nexenta backend
             nexenta_password: secretpassword
             nexenta_user: nonexistent
             nexenta_volume: volume1
+
+Glusterfs driver
+
+.. code-block:: yaml
+
+
+    manila:
+      share:
+        enabled_share_backends:
+          glusterfs:
+            name: glusterfs
+            type: glusterfs
+            enabled: true
+            share_driver: manila.share.drivers.glusterfs_native.GlusterfsNativeShareDriver
+            dhss: false
+            glusterfs_ganesha_server_ip: 1.2.3.4
+            glusterfs_ganesha_server_password: secretpassword
+            glusterfs_ganesha_server_username: nonexistent
+            glusterfs_mount_point_base: state_path/mnt
+            glusterfs_server_password: secretpassword
+            glusterfs_path_to_private_key: /path/to/key
+            glusterfs_nfs_server_type: glusterfs
+            glusterfs_share_layout: share_layout
+            glusterfs_target: remove:target
+            glusterfs_servers:
+              - server1
+              - server2
+            glusterfs_volume_pattern: manila-share-volume-d+$
+
 
 More information
 ================

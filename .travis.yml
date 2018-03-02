@@ -20,9 +20,11 @@ env:
   - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=server_cluster
   - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=server_single
   - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=share_nexenta
+  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=share_glusterfs
   - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=server_cluster
   - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=server_single
   - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=share_nexenta
+  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=share_glusterfs
 
 before_script:
   - set -o pipefail

@@ -80,5 +80,15 @@ suites:
             common:
               version: <%= ENV['OS_VERSION'] || 'pike' %>
 
+  - name: share_glusterfs
+    provisioner:
+      pillars-from-files:
+        manila.sls: tests/pillar/share_glusterfs.sls
+      pillars:
+        release.sls:
+          manila:
+            common:
+              version: <%= ENV['OS_VERSION'] || 'pike' %>
+
 # vim: ft=yaml sw=2 ts=2 sts=2 tw=125
 
