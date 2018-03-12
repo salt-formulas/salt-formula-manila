@@ -12,4 +12,7 @@ include:
 {%- if pillar.manila.share is defined %}
 - manila.share
 {%- endif %}
+{%- if pillar.manila.client is defined %}
+- manila.client
+{%- endif %}
 {%- endif %}
