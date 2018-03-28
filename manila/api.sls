@@ -23,6 +23,10 @@ manila_api_service_dead:
   - name: manila-api
   - enable: False
 
+manila_site_enabled:
+  apache_site.enabled:
+    - name: wsgi_manila
+
 {{ api.service }}:
   service.running:
     - enable: true
@@ -32,6 +36,9 @@ manila_api_service_dead:
     {%- if grains.get('noservices') %}
     - onlyif: /bin/false
     {%- endif %}
+    - require:
+      - manila_api_service_dead
+      - manila_site_enabled
 
 /etc/manila/policy.json:
   file.managed:
@@ -39,9 +46,5 @@ manila_api_service_dead:
   - template: jinja
   - require:
     - pkg: manila_api_packages
-
-manila_site_enabled:
-  apache_site.enabled:
-    - name: wsgi_manila
 
 {%- endif %}
