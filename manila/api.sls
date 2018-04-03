@@ -27,12 +27,20 @@ manila_site_enabled:
   apache_site.enabled:
     - name: wsgi_manila
 
+manila_apache_wsgi_config:
+  file.exists:
+    - name: /etc/apache2/sites-available/wsgi_manila.conf
+    - require:
+      - manila_site_enabled
+
 {{ api.service }}:
   service.running:
     - enable: true
     - watch:
       - file: /etc/manila/manila.conf
       - file: /etc/manila/policy.json
+      - manila_apache_wsgi_config
+      - manila_site_enabled
     {%- if grains.get('noservices') %}
     - onlyif: /bin/false
     {%- endif %}
