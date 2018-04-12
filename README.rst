@@ -92,6 +92,25 @@ Glusterfs driver
               - server2
             glusterfs_volume_pattern: manila-share-volume-d+$
 
+Client usage:
+=============
+
+The `manila.client` state provides ability to manage manila resources.
+
+Manage `share_type`
+
+.. code-block:: yaml
+
+
+    manila:
+      client:
+        enabled: true
+        server:
+          admin_identity:
+            share_type:
+              default:
+                extra_specs:
+                  driver_handles_share_servers: false
 
 More information
 ================
