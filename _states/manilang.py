@@ -12,7 +12,7 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
-
+from oslo_utils.strutils import bool_from_string
 import logging
 log = logging.getLogger(__name__)
 
@@ -33,7 +33,8 @@ manilang_func = {
 }
 
 
-def share_type_present(name, extra_specs, cloud_name, **kwargs):
+def share_type_present(name, extra_specs, cloud_name, microversion=None,
+                       **kwargs):
     """
     Ensure that share_type is present and has desired parameters
 
@@ -48,6 +49,14 @@ def share_type_present(name, extra_specs, cloud_name, **kwargs):
         dictionary to be POSTed, if specified.
 
     """
+    for key in extra_specs:
+        try:
+            extra_specs[key] = str(
+                bool_from_string(extra_specs[key], strict=True)
+            )
+        except ValueError:
+            extra_specs[key] = str(extra_specs[key])
+
     origin_share_types = __salt__[
         manilang_func['list_types']
     ](cloud_name=cloud_name)['share_types']
@@ -59,7 +68,8 @@ def share_type_present(name, extra_specs, cloud_name, **kwargs):
         try:
             res = __salt__[
                 manilang_func['create_type']
-            ](name, extra_specs, cloud_name=cloud_name, **kwargs)
+            ](name, extra_specs, cloud_name=cloud_name,
+              microversion=microversion, **kwargs)
         except Exception as e:
             log.error('Manila share type create failed with {}'.format(e))
             return _create_failed(name, 'resource')
@@ -81,14 +91,15 @@ def share_type_present(name, extra_specs, cloud_name, **kwargs):
             try:
                 __salt__[
                     manilang_func['unset_type_specs']
-                ](exact_share_type['id'], key, cloud_name=cloud_name)
+                ](exact_share_type['id'], key, cloud_name=cloud_name,
+                  microversion=microversion)
             except Exception as e:
                 log.error(
                     'Manila share type delete '
                     'extra specs failed with {}'.format(e)
                 )
                 return _update_failed(name, 'share_type_extra_specs')
-            resp.update({'deleted_extra_specs': to_delete})
+            resp.update({'deleted_extra_specs': tuple(to_delete)})
 
         diff = {}
 
@@ -102,8 +113,8 @@ def share_type_present(name, extra_specs, cloud_name, **kwargs):
                 resp.update(
                     __salt__[
                         manilang_func['set_type_specs']
-                    ](exact_share_type['id'], {'extra_specs': diff},
-                      cloud_name=cloud_name)
+                    ](exact_share_type['id'],  diff,
+                      cloud_name=cloud_name, microversion=microversion)
                 )
             except Exception as e:
                 log.error(
