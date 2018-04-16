@@ -15,6 +15,9 @@ manila_share_type_{{ share_type_name }}:
     - cloud_name: {{ identity_name }}
     - name: {{ share_type_name }}
     - extra_specs: {{ share_type.extra_specs }}
+    {%- if share_type.microversion is defined %}
+    - microversion: {{ share_type.microversion |string }}
+    {%- endif %}
 
 {%- endfor %}
 {%- endif %}
