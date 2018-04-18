@@ -44,7 +44,7 @@ verifier:
 platforms:
   - name: <%= ENV['PLATFORM'] || 'ubuntu-xenial' %>
     driver_config:
-      image: <%= ENV['PLATFORM'] || 'epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3' %>
+      image: <%= ENV['PLATFORM'] || 'epcim/salt:saltstack-ubuntu-xenial-salt-2016.3' %>
       platform: ubuntu
 
 suites:
