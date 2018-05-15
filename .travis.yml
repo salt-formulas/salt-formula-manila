@@ -27,11 +27,13 @@ env:
   - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=share-nexenta
   - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=share-glusterfs
   - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=server-cluster-ssl
-  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=server-cluster
-  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=server-single
-  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=share-nexenta
-  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=share-glusterfs
-  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=server-cluster-ssl
+#  Uncomment when salt 2018.3.1 released bug https://github.com/saltstack/salt/issues/46929
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=server-cluster
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=server-single
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=share-nexenta
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=share-glusterfs
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=server-cluster-ssl
+#
 #  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2017.7 OS_VERSION=pike SUITE=server-cluster
 #  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2017.7 OS_VERSION=pike SUITE=server-single
 #  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2017.7 OS_VERSION=pike SUITE=share-nexenta

@@ -45,6 +45,15 @@ manila:
           - server1
           - server2
         glusterfs_volume_pattern: manila-share-volume-d+$
+    logging:
+      log_appender: false
+      log_handlers:
+        watchedfile:
+          enabled: true
+        fluentd:
+          enabled: false
+        ossyslog:
+          enabled: false
 apache:
   server:
     enabled: true

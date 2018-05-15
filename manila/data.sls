@@ -1,9 +1,9 @@
-{%- from "manila/map.jinja" import data with context %}
+{%- from "manila/map.jinja" import data, cfg with context %}
 {%- if data.enabled %}
 include:
   - manila._common
 
-manila_data_packages:
+{{ data.service }}_pkg:
   pkg.installed:
   - names: {{ data.pkgs }}
 
@@ -15,5 +15,15 @@ manila_data_packages:
     {%- if grains.get('noservices') %}
     - onlyif: /bin/false
     {%- endif %}
+
+{% if not data.get('logging', {}).get('log_appender', False) %}
+{%- do data.update({'logging': cfg.logging})%}
+{% endif %}
+
+{% if data.logging.log_appender == True %}
+{%- set service_name = data.service %}
+{%- set config = data %}
+{%- include "manila/_logging.sls" %}
+{% endif %}
 
 {%- endif %}

@@ -35,6 +35,15 @@ manila:
         nexenta_password: secretpassword
         nexenta_user: nonexistent
         nexenta_volume: volume1
+    logging:
+      log_appender: false
+      log_handlers:
+        watchedfile:
+          enabled: true
+        fluentd:
+          enabled: false
+        ossyslog:
+          enabled: false
 apache:
   server:
     enabled: true

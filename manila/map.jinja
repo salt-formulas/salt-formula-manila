@@ -4,7 +4,18 @@
     })
 %}
 
-{% set cfg = pillar.manila.get('common', {}) %}
+{% set cfg = salt['grains.filter_by']({
+    'Debian': {
+        'logging': {
+          'log_appender': false,
+          'log_handlers': {
+            'watchedfile': {
+              'enabled': true
+            }
+          },
+        },
+    }
+}, merge=pillar.manila.get('common', {})) %}
 
 {% set api = salt['grains.filter_by']({
     'Debian': {

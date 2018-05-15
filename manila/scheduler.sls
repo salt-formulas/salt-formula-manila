@@ -1,9 +1,9 @@
-{%- from "manila/map.jinja" import scheduler with context %}
+{%- from "manila/map.jinja" import scheduler, cfg with context %}
 {%- if scheduler.enabled %}
 include:
   - manila._common
 
-manila_scheduler_packages:
+{{ scheduler.service }}_pkg:
   pkg.installed:
   - names: {{ scheduler.pkgs }}
 
@@ -15,5 +15,15 @@ manila_scheduler_packages:
     {%- if grains.get('noservices') %}
     - onlyif: /bin/false
     {%- endif %}
+
+{% if not scheduler.get('logging', {}).get('log_appender', False) %}
+{%- do scheduler.update({'logging': cfg.logging})%}
+{% endif %}
+
+{% if scheduler.logging.log_appender == True %}
+{%- set service_name = scheduler.service %}
+{%- set config = scheduler %}
+{%- include "manila/_logging.sls" %}
+{% endif %}
 
 {%- endif %}

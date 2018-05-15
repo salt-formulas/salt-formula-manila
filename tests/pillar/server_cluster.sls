@@ -34,6 +34,15 @@ manila:
       user: openstack
       password: workshop
       virtual_host: '/openstack'
+    logging:
+      log_appender: false
+      log_handlers:
+        watchedfile:
+          enabled: true
+        fluentd:
+          enabled: false
+        ossyslog:
+          enabled: false
 apache:
   server:
     enabled: true

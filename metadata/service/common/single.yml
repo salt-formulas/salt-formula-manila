@@ -1,6 +1,10 @@
 applications:
   - manila
 parameters:
+  _param:
+    openstack_log_appender: false
+    openstack_fluentd_handler_enabled: false
+    openstack_ossyslog_handler_enabled: false
   manila:
     common:
       version: ${_param:openstack_version}
@@ -30,3 +34,12 @@ parameters:
         user_domain_id: default
         project_domain_id: default
         protocol: 'http'
+      logging:
+        log_appender: ${_param:openstack_log_appender}
+        log_handlers:
+          watchedfile:
+            enabled: true
+          fluentd:
+            enabled: ${_param:openstack_fluentd_handler_enabled}
+          ossyslog:
+            enabled: ${_param:openstack_ossyslog_handler_enabled}
