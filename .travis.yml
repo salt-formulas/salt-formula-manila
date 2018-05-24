@@ -17,16 +17,31 @@ install:
   - bundle install
 
 env:
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=server_cluster
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=server_single
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=share_nexenta
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=share_glusterfs
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=server_cluster_ssl
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=server_cluster
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=server_single
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=share_nexenta
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=share_glusterfs
-  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=server_cluster_ssl
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=server-cluster
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=server-single
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=share-nexenta
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=share-glusterfs
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2016.3 OS_VERSION=pike SUITE=server-cluster-ssl
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=server-cluster
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=server-single
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=share-nexenta
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=share-glusterfs
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2017.7 OS_VERSION=pike SUITE=server-cluster-ssl
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=server-cluster
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=server-single
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=share-nexenta
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=share-glusterfs
+  - PLATFORM=epcim/salt:saltstack-ubuntu-xenial-salt-2018.3 OS_VERSION=pike SUITE=server-cluster-ssl
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2017.7 OS_VERSION=pike SUITE=server-cluster
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2017.7 OS_VERSION=pike SUITE=server-single
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2017.7 OS_VERSION=pike SUITE=share-nexenta
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2017.7 OS_VERSION=pike SUITE=share-glusterfs
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2017.7 OS_VERSION=pike SUITE=server-cluster-ssl
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2018.3 OS_VERSION=pike SUITE=server-cluster
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2018.3 OS_VERSION=pike SUITE=server-single
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2018.3 OS_VERSION=pike SUITE=share-nexenta
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2018.3 OS_VERSION=pike SUITE=share-glusterfs
+#  - PLATFORM=epcim/salt:saltstack-ubuntu-bionic-salt-2018.3 OS_VERSION=pike SUITE=server-cluster-ssl
 
 before_script:
   - set -o pipefail
